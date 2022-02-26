@@ -4,32 +4,23 @@ let alphaLow = 'acdefghijklnopqrstuvwxyz';
 let num = '0123456789';
 let specialChar = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 let allChar = '';
+let length = '';
+
 
 // Get references to the #generate element 
 let generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  let passwordLength = prompt('Pick a password length from 8 to 128 characters.');
-    if (!passwordLength || passwordLength <8 || passwordLength >128) {
-      alert('Please type a valid answer!');
-      writePassword();
-    }
-  else {
-    passwordLower();
-  } 
-}
-  
-  function passwordLower() {
-    let passwordLowerPrompt = window.confirm('Click Okay if you would like to include lowercase characters. Otherwise click Cancel.');
-    if (passwordLowerPrompt) {
-      allChar += alphaLow;
-      passwordUpper();
-    }  else {
-      passwordUpper();
-    }
-    }
-  
+
+  let passwordLowerPrompt = window.confirm('Click Okay if you would like to include lowercase characters. Otherwise click Cancel.');
+  if (passwordLowerPrompt) {
+    allChar += alphaLow;
+    passwordUpper();
+  } else {
+    passwordUpper();
+  }
+
   function passwordUpper() {
     let passwordUpperPrompt = window.confirm('Click Okay if you would like to include uppercase characters.');
     if (passwordUpperPrompt) {
@@ -39,7 +30,7 @@ function writePassword() {
       passwordNum();
     }
   }
-  
+
   function passwordNum() {
     let passwordNumPrompt = window.confirm('Click okay if you would like to include numbers.');
     if (passwordNumPrompt) {
@@ -49,22 +40,45 @@ function writePassword() {
       passwordSpecial();
     }
   }
-  
+
   function passwordSpecial() {
-    let passwordSpecialPrompt = window.confirm ('Click okay if you would like to include special characters.');
+    let passwordSpecialPrompt = window.confirm('Click okay if you would like to include special characters.');
     if (passwordSpecialPrompt) {
       allChar += specialChar;
-      console.log(allChar);
-      return allChar;
+      passwordLength();
+    } else {
+      passwordLength();
     }
   }
 
+  function passwordLength() {
+    let passwordLengthPrompt = Number(prompt('Pick a password length from 8 to 128 characters.'));
+    if (!passwordLengthPrompt || passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
+      alert('Please type a valid answer!');
+      passwordLength();
+    }
+    else {
+      length += passwordLengthPrompt;
+      console.log(allChar);
+      console.log(length);
+      generatePassword();
+    }
+  }
 
-  // let password = generatePassword();
+  function generatePassword(allChar) {
+    let newPassword = '';
+    for (let i = 0; i <= length.value; i++) {
+      newPassword += (Math.floor(Math.random() * allChar.length));
+      console.log(newPassword);
+    }
+  }
+}
 
-  // let passwordText = document.querySelector("#password");
+// let password = generatePassword();
 
-  // passwordText.value = password;
+// let passwordText = document.querySelector("#password");
+
+// passwordText.value = password;
 
 
 
@@ -89,3 +103,12 @@ generateBtn.addEventListener("click", writePassword);
 // THEN a password is generated that matches the selected criteria
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
+
+// function generatePassword() {
+  //   let password = '';
+  //   for (let i = 0; i <= length; i++) {
+  //     let randomNumber = (Math.floor(Math.random() * allChar.length));
+  //     password += allChar.substring(randomNumber, randomNumber +1);
+  //     console.log(password);
+  //   }
+  // }
