@@ -21,24 +21,43 @@ function writePassword() {
 }
   
   function passwordLower() {
-    passwordLowerPrompt = window.confirm('Would you like to include lower case characters?');
+    let passwordLowerPrompt = window.confirm('Click Okay if you would like to include lowercase characters. Otherwise click Cancel.');
     if (passwordLowerPrompt) {
       allChar += alphaLow;
-      console.log(allChar);
-      return allChar;
-    }  
+      passwordUpper();
+    }  else {
+      passwordUpper();
+    }
     }
   
   function passwordUpper() {
-    passwordUpperPrompt = window.confirm('Click okay if you would like to include upper case characters.');
+    let passwordUpperPrompt = window.confirm('Click Okay if you would like to include uppercase characters.');
     if (passwordUpperPrompt) {
       allChar += alphaCap;
+      passwordNum();
+    } else {
+      passwordNum();
+    }
+  }
+  
+  function passwordNum() {
+    let passwordNumPrompt = window.confirm('Click okay if you would like to include numbers.');
+    if (passwordNumPrompt) {
+      allChar += num;
+      passwordSpecial();
+    } else {
+      passwordSpecial();
+    }
+  }
+  
+  function passwordSpecial() {
+    let passwordSpecialPrompt = window.confirm ('Click okay if you would like to include special characters.');
+    if (passwordSpecialPrompt) {
+      allChar += specialChar;
       console.log(allChar);
       return allChar;
     }
   }
-
-  
 
 
   // let password = generatePassword();
