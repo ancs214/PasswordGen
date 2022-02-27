@@ -10,7 +10,7 @@ A simple password generator website with customizable options for length and cha
 *JS
 
 ## Website
-(https://ancs214.github.io/PasswordGen/){:target="_blank"}
+https://ancs214.github.io/PasswordGen/
 
 ## Contribution
 Ashley-Noel 
